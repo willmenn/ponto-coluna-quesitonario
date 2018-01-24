@@ -66,9 +66,10 @@ class App extends Component {
                             })}
                         </div>)
                     })}
-                    <div className="mt-5">
-                    <button type="reset" className="btn btn-outline-secondary mr-2">Resetar o questionário</button>
-                    <button type="submit" className="btn btn-outline-success ml-2">Submeter o questionário</button>
+                    <div className="form-group mt-5">
+                        <button type="submit" className="btn btn-outline-success ml-2 mobile-margin">
+                            Submeter o questionário
+                        </button>
                     </div>
                 </form>
             </div>
