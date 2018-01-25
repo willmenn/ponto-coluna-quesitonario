@@ -2,3 +2,21 @@
 form, h1 {
     text-align: center;
 }
+
+.dashboard-row{
+    margin-top: 100px;
+}
+
+.dashboard-img-container {
+    height: 600px;
+    text-align: center;
+}
+
+.dashboard-img {
+    height: 33%;
+}
+
+.dashboard-img-label {
+    text-decoration: none;
+    color: black;
+}

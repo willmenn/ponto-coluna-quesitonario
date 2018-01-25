@@ -1,24 +1,27 @@
 import React, {Component} from 'react';
 import '../static/signin.css'
 import {store} from '../store/Store'
-import {LOGIN_ACTION} from "../action/Constants";
+import {LOGIN_ACTION, LOGIN_ACTION_DASHBOARD} from "../action/Constants";
 import firebase from 'firebase'
 
 
 class Login extends Component {
-    constructor() {
-        super()
-    }
 
     onSubmit(evt) {
         let data = this.createFormData(evt);
 
         let auth = firebase.auth();
 
-        auth.signInWithEmailAndPassword(data.email,data.password).then(e =>{
-            store.dispatch({type: LOGIN_ACTION, payload: e});
+        auth.signInWithEmailAndPassword(data.email, data.password)
+            .then(e => {
+            if (e !== null) {
+                if (data.email === "william.ahrons@gmail.com") {
+                    store.dispatch({type: LOGIN_ACTION_DASHBOARD, payload: e});
+                }else {
+                    store.dispatch({type: LOGIN_ACTION, payload: e});
+                }
+            }
         }).catch(e => console.log("erro" + e));
-
 
         evt.preventDefault();
         return false;
@@ -40,17 +43,18 @@ class Login extends Component {
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
                     <input type="email" id="inputEmail" className="form-control" placeholder="Email address"
                            name="email"
-                           />
+                    />
                     <label htmlFor="inputPassword" className="sr-only">Password</label>
                     <input type="password" id="inputPassword" className="form-control" placeholder="Password"
-                    name="password"/>
+                           name="password"/>
                     <div className="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me"/> Remember me
                         </label>
                     </div>
                     <button className="btn btn-lg btn-primary btn-block"
-                            type="submit">Entrar</button>
+                            type="submit">Entrar
+                    </button>
                 </form>
             </div>
         );

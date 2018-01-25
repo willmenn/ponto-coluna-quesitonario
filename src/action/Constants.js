@@ -1,1 +1,11 @@
 export const LOGIN_ACTION = "LOGIN_ACTION";
+export const LOGIN_ACTION_DASHBOARD = "LOGIN_ACTION_DASHBOARD";
+
+export const DASHBOARD = {
+    GO_TO_FORM_PAGE: "DASHBOARD_TO_GO_FORM_PAGE"
+};
+
+export const PAGE_FORM = "PAGE_FORM";
+export const PAGE_DASHBOARD = "PAGE_DASHBOARD";
+
+
