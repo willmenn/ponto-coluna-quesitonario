@@ -39,7 +39,7 @@ class Login extends Component {
         return (
             <div className="container">
                 <form className="form-signin" onSubmit={this.onSubmit.bind(this)}>
-                    <h2 className="form-signin-heading">Please sign in</h2>
+                    <h2 className="form-signin-heading">Ponto da Coluna</h2>
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
                     <input type="email" id="inputEmail" className="form-control" placeholder="Email address"
                            name="email"
@@ -47,11 +47,6 @@ class Login extends Component {
                     <label htmlFor="inputPassword" className="sr-only">Password</label>
                     <input type="password" id="inputPassword" className="form-control" placeholder="Password"
                            name="password"/>
-                    <div className="checkbox">
-                        <label>
-                            <input type="checkbox" value="remember-me"/> Remember me
-                        </label>
-                    </div>
                     <button className="btn btn-lg btn-primary btn-block"
                             type="submit">Entrar
                     </button>

@@ -1,15 +1,21 @@
-import {DASHBOARD, LOGIN_ACTION, LOGIN_ACTION_DASHBOARD, PAGE_DASHBOARD, PAGE_FORM} from "../action/Constants";
+import * as constants from "../action/Constants";
 
 export const page = (state=null, action) => {
-    if (action.type === LOGIN_ACTION_DASHBOARD) {
-        return PAGE_DASHBOARD
+    if (action.type === constants.LOGIN_ACTION_DASHBOARD) {
+        return constants.PAGE_DASHBOARD
     }
-    if(action.type === DASHBOARD.GO_TO_FORM_PAGE){
-        return PAGE_FORM
+    if (action.type === constants.REGISTRY_PATIENT_GO_TO_DASHBOARD) {
+        return constants.PAGE_DASHBOARD
     }
-    if(action.type === LOGIN_ACTION){
-        return PAGE_FORM
+    if(action.type === constants.DASHBOARD.GO_TO_FORM_PAGE){
+        return constants.PAGE_FORM
+    }
+    if(action.type === constants.LOGIN_ACTION){
+        return constants.PAGE_FORM
+    }
+    if(action.type === constants.DASHBOARD.GO_TO_REGISTRY_PATIENT_PAGE){
+        return constants.PAGE_REGISTRY_PATIENT
     }
 
-    return {...state}
+    return constants.PAGE_FORM
 }

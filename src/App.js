@@ -3,11 +3,12 @@ import React, {Component} from 'react';
 import Form from './component/Form'
 import Login from './component/Login'
 import Dashboard from './component/Dashboard'
+import RegistryPacient from './component/RegistryPatient'
 import {connect} from 'react-redux'
 
 import './static/main.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import {PAGE_DASHBOARD, PAGE_FORM} from "./action/Constants";
+import {PAGE_REGISTRY_PATIENT, PAGE_DASHBOARD, PAGE_FORM} from "./action/Constants";
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
                 {auth === null ? <Login/> : null}
                 {auth && page === PAGE_FORM ? <Form questions={questions}/> : null}
                 {page === PAGE_DASHBOARD ? <Dashboard/> : null}
+                {page === PAGE_REGISTRY_PATIENT ? <RegistryPacient/> : null}
             </div>
         );
     }

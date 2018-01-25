@@ -1,4 +1,4 @@
-import {LOGIN_ACTION, LOGIN_ACTION_DASHBOARD, PAGE_DASHBOARD} from "../action/Constants";
+import {LOGIN_ACTION, LOGIN_ACTION_DASHBOARD} from "../action/Constants";
 
 export const auth = (state=null, action) => {
     if (action.type === LOGIN_ACTION) {

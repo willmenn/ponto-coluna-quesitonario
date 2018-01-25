@@ -12,7 +12,7 @@ class Dashboard extends Component {
     }
 
     onClickAddUserImg() {
-
+        store.dispatch({type: DASHBOARD.GO_TO_REGISTRY_PATIENT_PAGE});
     }
 
     render() {
@@ -21,13 +21,13 @@ class Dashboard extends Component {
                 <div className="row dashboard-row">
                     <div className="col dashboard-img-container">
                         <a onClick={() => this.onClickDocumentTextImg()} href="#">
-                            <img src={documentText} className="dashboard-img"></img>
+                            <img src={documentText} alt="" className="dashboard-img"></img>
                             <p className="dashboard-img-label">Ir para o Questionário</p>
                         </a>
                     </div>
                     <div className="col dashboard-img-container">
                         <a onClick={() => this.onClickAddUserImg()} href="#">
-                            <img src={userAdd} className="dashboard-img"></img>
+                            <img src={userAdd} alt="" className="dashboard-img"></img>
                             <p className="dashboard-img-label">Cadastro de Paciente</p>
                         </a>
                     </div>
