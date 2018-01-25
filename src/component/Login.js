@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './signin.css'
+import '../static/signin.css'
 import {store} from '../store/Store'
 import {LOGIN_ACTION} from "../action/Constants";
 import firebase from 'firebase'
