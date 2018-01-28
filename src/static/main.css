@@ -49,3 +49,8 @@ form, h1 {
     opacity: 0;
 
 }
+
+.container-list {
+    max-width: 800px;
+    margin: auto;
+}

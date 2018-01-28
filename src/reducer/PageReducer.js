@@ -16,6 +16,11 @@ export const page = (state=null, action) => {
     if(action.type === constants.DASHBOARD.GO_TO_REGISTRY_PATIENT_PAGE){
         return constants.PAGE_REGISTRY_PATIENT
     }
-
+    if(action.type === constants.DASHBOARD.GO_TO_PATIENT_LIST_PAGE){
+        return constants.PAGE_PATIENT_LIST
+    }
+    if(action.type === constants.PAGE_FORM_FULFILLED){
+        return constants.PAGE_FORM_FULFILLED
+    }
     return constants.PAGE_FORM
 }

@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux'
 import {page} from './PageReducer'
 import {auth} from './AuthReducer'
+import * as constants from "../action/Constants";
 
 let questionsState =[
     {
@@ -43,9 +44,16 @@ let questionsState =[
 
 export const questions = (state=questionsState, action) =>  state
 
+export const questionsAnswered = (state=null, action) =>  {
+    if(action.type === constants.PAGE_FORM_FULFILLED){
+        return action.payload
+    }
+    return state
+}
 
 export default combineReducers({
     auth,
     page,
-    questions
+    questions,
+    questionsAnswered
 });

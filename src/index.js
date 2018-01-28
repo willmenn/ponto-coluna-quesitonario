@@ -12,7 +12,7 @@ var config = {
     authDomain: "ponto-da-coluna.firebaseapp.com",
     databaseURL: "https://ponto-da-coluna.firebaseio.com",
     projectId: "ponto-da-coluna",
-    storageBucket: "",
+    storageBucket: "gs://ponto-da-coluna.appspot.com/",
     messagingSenderId: "655594431526"
 };
 firebase.initializeApp(config);

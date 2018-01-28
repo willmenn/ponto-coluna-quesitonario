@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0",
     "firebase": "^4.9.0",
+    "html2pdf.js": "^0.8.2",
     "immutable": "^3.8.2",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",

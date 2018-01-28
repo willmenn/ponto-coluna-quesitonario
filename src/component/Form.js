@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Map} from 'immutable'
+import firebase from 'firebase'
+import html2pdf from 'html2pdf.js'
+import downloadImg from 'typicons.font/src/svg/download.svg'
 
 class Form extends Component {
 
@@ -10,6 +13,7 @@ class Form extends Component {
             score: 0
         };
     }
+
 
     onChangeCheckbox(event) {
         if (event && event.target.checked) {
@@ -32,14 +36,37 @@ class Form extends Component {
         d.className += " fade-out";
         var d = document.getElementById("countId");
         d.className += " fade-in";
+
+        let firebaseDatabase = firebase.database();
+        var docRef = firebaseDatabase.ref().child("form");
+
+        console.log();
+        var form = {
+            score: count,
+            email: this.props.auth.auth.email,
+            questionsAnswered: this.state.count.toObject()
+        }
+        docRef.push({form: form}).then(e => console.log("sucesso"));
+
         evt.preventDefault();
         return false;
     }
 
+    downloadPDF() {
+        var container = document.getElementById("containerForm");
+        html2pdf(container, {
+            margin: 1,
+            filename: 'myfile.pdf',
+            image: {type: 'jpeg', quality: 0.98},
+            html2canvas: {dpi: 192, letterRendering: true},
+            jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
+        });
+    }
+
     render() {
-        console.log(this.state);
         let questions = this.props.questions;
         let score = this.state.score;
+        let questionsAnswered = this.props.questionsAnswered;
         return (
             <div>
                 <div className="weight-count" id="countId">
@@ -47,7 +74,13 @@ class Form extends Component {
                     <h1>A equipe Ponto da Coluna Agradece.</h1>
                 </div>
                 <div className="container" id="containerForm">
-
+                    {this.props.fulfilled ?
+                        <div className="float-right">
+                            <a href="#" onClick={() => this.downloadPDF()}>
+                                <img src={downloadImg} alt="">
+                                </img>
+                            </a>
+                        </div> : null}
                     <h1>Questionário Ponto da Coluna</h1>
                     <form onSubmit={this.onSubmit.bind(this)}>
                         {questions.map(question => {
@@ -56,27 +89,48 @@ class Form extends Component {
                                 {question.answers.map(answer => {
                                     return (<div className="form-check form-check-inline">
                                         <label className="form-check-label">
-                                            <input type="checkbox" className="form-check-input"
+                                            {this.props.fulfilled ? <input type="checkbox" className="form-check-input"
                                                    name="optionsRadios"
                                                    id={"checkbox" + answer.answer + question.id}
                                                    data-question-id={question.id}
                                                    data-answer-weight={answer.weight}
-                                                   onChange={this.onChangeCheckbox.bind(this)}/>
+                                                   onChange={this.onChangeCheckbox.bind(this)}
+                                                   checked={this.isChecked(questionsAnswered, question, answer)}
+                                            /> :
+                                                <input type="checkbox" className="form-check-input"
+                                                       name="optionsRadios"
+                                                       id={"checkbox" + answer.answer + question.id}
+                                                       data-question-id={question.id}
+                                                       data-answer-weight={answer.weight}
+                                                       onChange={this.onChangeCheckbox.bind(this)}
+                                                />}
                                             {answer.answer}
                                         </label>
                                     </div>)
                                 })}
                             </div>)
                         })}
-                        <div className="form-group mt-5">
-                            <button type="submit" className="btn btn-outline-success ml-2 mobile-margin">
-                                Submeter o questionário
-                            </button>
-                        </div>
+                        {this.props.fulfilled ?
+                            <div className="form-group mt-5">
+                                <p>{this.props.score}</p>
+                            </div>:
+                            <div className="form-group mt-5">
+                                <button type="submit" className="btn btn-outline-success ml-2 mobile-margin">
+                                    Submeter o questionário
+                                </button>
+                            </div>
+                        }
                     </form>
                 </div>
             </div>
         );
+    }
+
+    isChecked(questionsAnswered, question, answer) {
+        if (this.props.fulfilled) {
+            return parseInt(questionsAnswered[question.id]) === answer.weight;
+        }
+        return false;
     }
 }
 
