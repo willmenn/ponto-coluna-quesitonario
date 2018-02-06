@@ -37,8 +37,8 @@ form, h1 {
 
 .fade-in{
     opacity: 1 !important;
-    display: flex;
-    min-height: 100vh;
+    display: flex !important;
+    min-height: 80vh;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -47,7 +47,6 @@ form, h1 {
 .weight-count {
     transition: 3s;
     opacity: 0;
-
 }
 
 .container-list {

@@ -59,10 +59,6 @@ class Form extends Component {
         let questionsAnswered = this.props.questionsAnswered;
         return (
             <div>
-                <div className="weight-count" id="countId">
-                    <h1>A sua pontuação é {score}.</h1>
-                    <h1>A equipe Ponto da Coluna Agradece.</h1>
-                </div>
                 <div className="container" id="containerForm">
                     {this.props.fulfilled ?
                         <FormNavBar/>
@@ -107,6 +103,10 @@ class Form extends Component {
                             </div>
                         }
                     </form>
+                </div>
+                <div className="weight-count" id="countId">
+                    <h1>A sua pontuação é {score}.</h1>
+                    <h1>A equipe Ponto da Coluna Agradece.</h1>
                 </div>
             </div>
         );

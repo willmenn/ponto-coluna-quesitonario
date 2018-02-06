@@ -24,7 +24,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.setState({frebaseAuth: new FirebaseStore(this.props.firebaseApp)})
+        this.setState({firebaseAuth: new FirebaseStore(this.props.firebaseApp)})
     }
 
     render() {
