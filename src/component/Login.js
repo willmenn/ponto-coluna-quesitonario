@@ -10,18 +10,7 @@ class Login extends Component {
     onSubmit(evt) {
         let data = this.createFormData(evt);
 
-        let auth = firebase.auth();
-
-        auth.signInWithEmailAndPassword(data.email, data.password)
-            .then(e => {
-            if (e !== null) {
-                if (data.email === "william.ahrons@gmail.com") {
-                    store.dispatch({type: LOGIN_ACTION_DASHBOARD, payload: data});
-                }else {
-                    store.dispatch({type: LOGIN_ACTION, payload: e});
-                }
-            }
-        }).catch(e => console.log("erro" + e));
+        this.props.firebaseAuth.login(data);
 
         evt.preventDefault();
         return false;

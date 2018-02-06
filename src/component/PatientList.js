@@ -3,7 +3,8 @@ import '../static/signin.css'
 import firebase from 'firebase'
 import {store} from '../store/Store'
 import {PAGE_FORM_FULFILLED} from "../action/Constants";
-
+import FormNavBar from './FormNavBar'
+import '../static/main.css'
 
 class PatientList extends Component {
     constructor() {
@@ -39,18 +40,21 @@ class PatientList extends Component {
         let patients = this.state.patients;
         console.log(patients);
         return (
-            <div className="container-list">
-                <ul className="list-group">
-                    {patients.map(patient => {
-                        return (
-                            <a href="#" onClick={() => this.onClickPatient(patient.form.form.questionsAnswered)}>
-                                <li className="list-group-item">
-                                    {patient.form.form.email + ", score:" + patient.form.form.score}
-                                </li>
-                            </a>
-                        )
-                    })}
-                </ul>
+            <div className="container">
+                <FormNavBar/>
+                <div className="container-list">
+                    <ul className="list-group">
+                        {patients.map(patient => {
+                            return (
+                                <a href="#" onClick={() => this.onClickPatient(patient.form.form.questionsAnswered)}>
+                                    <li className="list-group-item">
+                                        {patient.form.form.email + ", score:" + patient.form.form.score}
+                                    </li>
+                                </a>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
         );
     }

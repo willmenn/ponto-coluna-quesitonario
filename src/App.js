@@ -14,7 +14,18 @@ import {
     PAGE_FORM_FULFILLED
 } from "./action/Constants";
 
+import FirebaseStore from './store/FirebaseStore'
+
 class App extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {firebaseAuth: {}}
+    }
+
+    componentDidMount() {
+        this.setState({frebaseAuth: new FirebaseStore(this.props.firebaseApp)})
+    }
 
     render() {
         let auth = this.props.auth;
@@ -23,7 +34,7 @@ class App extends Component {
         let questionsAnswered = this.props.questionsAnswered
         return (
             <div>
-                {auth === null ? <Login/> : null}
+                {auth === null ? <Login firebaseAuth={this.state.firebaseAuth}/> : null}
                 {auth && (page === PAGE_FORM || page === PAGE_FORM_FULFILLED)
                     ? <Form questions={questions} auth={auth}
                             fulfilled={page === PAGE_FORM_FULFILLED}

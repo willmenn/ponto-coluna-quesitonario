@@ -15,7 +15,7 @@ var config = {
     storageBucket: "gs://ponto-da-coluna.appspot.com/",
     messagingSenderId: "655594431526"
 };
-firebase.initializeApp(config);
+const firebaseApp = firebase.initializeApp(config);
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><App firebaseApp={firebaseApp}/></Provider>, document.getElementById('root'));
 registerServiceWorker();

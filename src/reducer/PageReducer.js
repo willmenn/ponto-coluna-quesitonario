@@ -4,7 +4,9 @@ export const page = (state=null, action) => {
     if (action.type === constants.LOGIN_ACTION_DASHBOARD) {
         return constants.PAGE_DASHBOARD
     }
-    if (action.type === constants.REGISTRY_PATIENT_GO_TO_DASHBOARD) {
+    if (action.type === constants.REGISTRY_PATIENT_GO_TO_DASHBOARD ||
+        action.type === constants.NAVBAR.GO_TO_DASHBOARD
+    ) {
         return constants.PAGE_DASHBOARD
     }
     if(action.type === constants.DASHBOARD.GO_TO_FORM_PAGE){

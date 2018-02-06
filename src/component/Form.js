@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Map} from 'immutable'
 import firebase from 'firebase'
-import html2pdf from 'html2pdf.js'
-import downloadImg from 'typicons.font/src/svg/download.svg'
+import FormNavBar  from './FormNavBar'
 
 class Form extends Component {
 
@@ -52,16 +51,7 @@ class Form extends Component {
         return false;
     }
 
-    downloadPDF() {
-        var container = document.getElementById("containerForm");
-        html2pdf(container, {
-            margin: 1,
-            filename: 'myfile.pdf',
-            image: {type: 'jpeg', quality: 0.98},
-            html2canvas: {dpi: 192, letterRendering: true},
-            jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
-        });
-    }
+
 
     render() {
         let questions = this.props.questions;
@@ -75,12 +65,8 @@ class Form extends Component {
                 </div>
                 <div className="container" id="containerForm">
                     {this.props.fulfilled ?
-                        <div className="float-right">
-                            <a href="#" onClick={() => this.downloadPDF()}>
-                                <img src={downloadImg} alt="">
-                                </img>
-                            </a>
-                        </div> : null}
+                        <FormNavBar/>
+                        : null}
                     <h1>Questionário Ponto da Coluna</h1>
                     <form onSubmit={this.onSubmit.bind(this)}>
                         {questions.map(question => {
